@@ -159,12 +159,15 @@
   .hero-vignette {
     display:flex; flex-direction:column; align-items:center;
     padding:2.5rem 3.5rem;
-    background:rgba(10,10,56,0.58);
-    backdrop-filter:blur(28px) saturate(1.8);
-    -webkit-backdrop-filter:blur(28px) saturate(1.8);
+    background:rgba(30,25,90,0.72);
+    backdrop-filter:blur(24px) saturate(1.6);
+    -webkit-backdrop-filter:blur(24px) saturate(1.6);
     border:1px solid rgba(255,255,255,0.14);
-    border-radius:24px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.18), var(--shadow-xl);
+    border-radius:20px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.12),
+      inset 0 -1px 0 rgba(0,0,0,0.15),
+      0 20px 60px rgba(0,0,0,0.45);
     max-width:660px; width:100%;
   }
   .hero-badge {
@@ -351,10 +354,10 @@
   /* ── APARTADOS — dark blue ── */
   #apartados { background:var(--grad-blue-deep); }
   .orbit-section { position:relative; margin-top:4rem; display:flex; flex-direction:column; align-items:center; isolation:isolate; }
-  .orbit-wrap { position:relative; width:600px; height:600px; max-width:100%; }
+  .orbit-wrap { position:relative; width:760px; height:760px; max-width:100%; }
   .orbit-center {
     position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:110px; height:110px; border-radius:50%;
+    width:130px; height:130px; border-radius:50%;
     background:var(--grad-blue-card);
     border:1px solid var(--border-on-dark-hi);
     display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:5;
@@ -366,8 +369,8 @@
   .orbit-center-label { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:400; color:var(--on-dark-primary); letter-spacing:0.04em; }
   .orbit-center-sub { font-size:0.5rem; color:var(--accent-300); letter-spacing:0.1em; text-transform:uppercase; margin-top:0.2rem; }
   .orbit-ring { position:absolute; top:50%; left:50%; border-radius:50%; border:1px solid var(--border-on-dark-hi); transform:translate(-50%,-50%); pointer-events:none; }
-  .orbit-ring-1 { width:260px; height:260px; }
-  .orbit-ring-2 { width:440px; height:440px; border-style:dashed; opacity:0.25; }
+  .orbit-ring-1 { width:330px; height:330px; }
+  .orbit-ring-2 { width:560px; height:560px; border-style:dashed; opacity:0.25; }
   .orbit-lines { position:absolute; inset:0; pointer-events:none; z-index:1; }
   .orbit-node {
     position:absolute; width:80px; height:80px; border-radius:50%;
@@ -586,7 +589,7 @@
     .pap-phases { grid-template-columns:1fr; }
     .pap-phase-arrow { padding:0.8rem 0; font-size:1.4rem; align-self:center; transform:rotate(90deg); }
     .vuln-grid { grid-template-columns:1fr 1fr; }
-    .orbit-wrap { width:320px; height:320px; }
+    .orbit-wrap { width:400px; height:400px; }
     .schema-flow { flex-direction:column; }
     .schema-arrow { transform:rotate(90deg); }
   }
@@ -771,6 +774,101 @@
     .col-factors-grid { grid-template-columns:1fr; }
   }
 
+
+  /* ── INTRO CARDS ── */
+  #introduccion {
+    position:relative;
+    overflow:hidden;
+    background:var(--blue-900);
+    border-bottom:1px solid var(--border-on-dark);
+  }
+
+  /* Video background */
+  .intro-bg-video {
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center;
+    z-index:0;
+    opacity:0.55;
+  }
+
+  /* Gradient overlay — dark top for text, slightly lighter mid */
+  .intro-bg-overlay {
+    position:absolute; inset:0;
+    background:
+      linear-gradient(to bottom,
+        rgba(10,10,56,0.72) 0%,
+        rgba(10,10,56,0.48) 45%,
+        rgba(10,10,56,0.68) 100%);
+    z-index:1;
+  }
+
+  .intro-cards {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.4rem;
+    margin-top:2.5rem;
+  }
+
+  .intro-card {
+    background:rgba(255,255,255,0.07);
+    backdrop-filter:blur(20px) saturate(1.6);
+    -webkit-backdrop-filter:blur(20px) saturate(1.6);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:16px;
+    padding:2rem 1.8rem;
+    position:relative;
+    overflow:hidden;
+    transition:background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.12),
+      0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  .intro-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background:var(--grad-accent);
+    opacity:0; transition:opacity 0.3s;
+  }
+
+  .intro-card:hover {
+    background:rgba(255,255,255,0.12);
+    transform:translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.16),
+      0 16px 48px rgba(0,0,0,0.4),
+      var(--glow);
+  }
+  .intro-card:hover::before { opacity:1; }
+
+  .intro-card-icon {
+    font-size:2.2rem;
+    margin-bottom:1rem;
+    display:block;
+    filter:drop-shadow(0 2px 8px rgba(106,165,224,0.4));
+  }
+
+  .intro-card-title {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.3rem;
+    font-weight:400;
+    color:var(--on-dark-primary);
+    margin-bottom:0.8rem;
+    line-height:1.3;
+  }
+
+  .intro-card-body {
+    font-size:0.87rem;
+    color:var(--on-dark-secondary);
+    line-height:1.75;
+  }
+
+  @media(max-width:768px) {
+    .intro-cards { grid-template-columns:1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -811,8 +909,8 @@
       <div class="hero-divider"></div>
       <div class="hero-meta">
         <p>Autoría</p>
-        <strong>[Nombre del autor / autores]</strong>
-        <p style="margin-top:0.4rem;font-size:0.76rem;">[Universidad · Asignatura · Curso académico]</p>
+        <strong>Airán Yanes Pacheco · Diego Medina Arrocha · Ángela Rodríguez Hernández<br>Ayoze García Rodríguez · Jon Megún Salvador González</strong>
+        <p style="margin-top:0.6rem;font-size:0.76rem;">Universidad de La Laguna (ULL) · Interacción Psicosocial</p>
       </div>
       <p class="hero-scroll-label" id="heroScrollLabel">↓ Desliza para expandir</p>
     </div>
@@ -844,90 +942,39 @@
 
 <!-- INTRODUCCIÓN -->
 <section id="introduccion">
-  <div class="container">
-    <div class="section-label reveal" class="label-light">Introducción</div>
-    <h2 class="section-heading reveal" class="heading-light">¿Qué son los <em>Primeros<br>Auxilios Psicológicos</em>?</h2>
 
-    <!-- Intro text — full width -->
-    <div class="intro-text-full reveal">
-      <p>Los <strong>Primeros Auxilios Psicológicos (PAP)</strong> constituyen una forma de ayuda inmediata, humana y de apoyo, dirigida a personas que han vivido recientemente un evento extremadamente estresante o traumático. Su objetivo no es realizar psicoterapia, sino proporcionar estabilización emocional básica en los primeros momentos tras la crisis.</p>
-      <p>Fueron desarrollados y promovidos por organismos internacionales como la <strong>Organización Mundial de la Salud (OMS)</strong>, el Sphere Project y la red IASC, como respuesta a la evidencia acumulada sobre la intervención en catástrofes, conflictos armados y emergencias colectivas.</p>
-      <p>Se basan en tres principios fundamentales: <em>observar, escuchar y conectar</em>. No requieren ser un profesional de la salud mental para aplicarlos, aunque siempre deben contextualizarse según la formación de quien los facilita.</p>
-      <p>[<em>Aquí irá el contenido específico que nos facilites. Este texto es provisional y muestra la estructura del sitio.</em>]</p>
-    </div>
+  <!-- Video background -->
+  <video class="intro-bg-video" autoplay muted loop playsinline>
+    <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4" type="video/mp4">
+  </video>
+  <!-- Gradient overlay -->
+  <div class="intro-bg-overlay"></div>
 
-    <!-- PAP Model — full redesign -->
-    <div class="pap-model reveal">
-      <div class="pap-model-label">Modelo de actuación OMS · Fases de los PAP</div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="section-label reveal label-dark" style="color:var(--accent-300);">Introducción</div>
+    <h2 class="section-heading reveal heading-dark">¿Qué son los <em>Primeros<br>Auxilios Psicológicos</em>?</h2>
 
-      <div class="pap-phases">
+    <div class="intro-cards reveal">
 
-        <!-- Phase 1: OBSERVAR -->
-        <div class="pap-phase">
-          <div class="pap-phase-header">
-            <div class="pap-phase-icon">👁️</div>
-            <div class="pap-phase-num">01</div>
-          </div>
-          <div class="pap-phase-body">
-            <h3>Observar</h3>
-            <p>Evalúa la seguridad del entorno antes de actuar. Identifica quiénes necesitan ayuda con más urgencia y cuáles son sus necesidades básicas inmediatas.</p>
-            <ul class="pap-phase-points">
-              <li>¿Hay peligro físico presente?</li>
-              <li>¿Quién está más afectado?</li>
-              <li>¿Qué recursos hay disponibles?</li>
-            </ul>
-          </div>
-          <div class="pap-phase-tag">Evaluación</div>
-        </div>
-
-        <div class="pap-phase-arrow">→</div>
-
-        <!-- Phase 2: ESCUCHAR -->
-        <div class="pap-phase">
-          <div class="pap-phase-header">
-            <div class="pap-phase-icon">👂</div>
-            <div class="pap-phase-num">02</div>
-          </div>
-          <div class="pap-phase-body">
-            <h3>Escuchar</h3>
-            <p>Acércate con calma y empatía. Ofrece tu presencia sin imponer. Escucha activamente sin juzgar y valida las emociones de la persona afectada.</p>
-            <ul class="pap-phase-points">
-              <li>Contacto visual y postura abierta</li>
-              <li>Sin interrumpir ni minimizar</li>
-              <li>Preguntas simples y directas</li>
-            </ul>
-          </div>
-          <div class="pap-phase-tag">Apoyo activo</div>
-        </div>
-
-        <div class="pap-phase-arrow">→</div>
-
-        <!-- Phase 3: CONECTAR -->
-        <div class="pap-phase">
-          <div class="pap-phase-header">
-            <div class="pap-phase-icon">🤝</div>
-            <div class="pap-phase-num">03</div>
-          </div>
-          <div class="pap-phase-body">
-            <h3>Conectar</h3>
-            <p>Enlaza a la persona con sus redes de apoyo naturales y con los recursos profesionales disponibles. Facilita el acceso a la información y a la atención continuada.</p>
-            <ul class="pap-phase-points">
-              <li>Familia, amigos, comunidad</li>
-              <li>Servicios de emergencia y salud</li>
-              <li>Derivación cuando sea necesario</li>
-            </ul>
-          </div>
-          <div class="pap-phase-tag">Vinculación</div>
-        </div>
-
+      <div class="intro-card">
+        <div class="intro-card-icon">🤝</div>
+        <h3 class="intro-card-title">Acompañar, no tratar</h3>
+        <p class="intro-card-body">Los PAP son una ayuda humanitaria básica que busca que la persona en shock se sienta segura y acompañada, previniendo daños psicológicos a largo plazo.</p>
       </div>
 
-      <!-- Bottom note -->
-      <div class="pap-model-note">
-        Los PAP <strong>no son psicoterapia</strong> ni debriefing psicológico. Son una respuesta humana, inmediata y basada en la evidencia para reducir el impacto inicial del trauma.
+      <div class="intro-card">
+        <div class="intro-card-icon">⏱️</div>
+        <h3 class="intro-card-title">Las primeras 72 horas son clave</h3>
+        <p class="intro-card-body">Intervenir en esa ventana de tiempo ayuda al cerebro a procesar el caos y evita que la persona se bloquee emocionalmente.</p>
       </div>
-    </div>
 
+      <div class="intro-card">
+        <div class="intro-card-icon">🔄</div>
+        <h3 class="intro-card-title">Saber cuándo ceder el paso</h3>
+        <p class="intro-card-body">Reconocer los límites de los PAP y derivar a tiempo a un especialista es tan importante como la intervención misma.</p>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -1164,13 +1211,25 @@
     <h2 class="section-heading reveal" class="heading-light">Bibliografía <em>— APA 7.ª edición</em></h2>
     <div class="ref-note reveal">⚠️ Las referencias a continuación son ejemplos representativos con formato APA 7.ª edición. Serán sustituidas por las fuentes reales del trabajo una vez facilitado el contenido definitivo.</div>
     <div class="ref-list">
-      <p class="ref-item reveal">Organización Mundial de la Salud, War Trauma Foundation y World Vision International. (2012). <em>Primeros auxilios psicológicos: Guía para trabajadores de campo</em>. OMS. https://www.who.int/es/publications/i/item/9789241548205</p>
-      <p class="ref-item reveal">Hobfoll, S. E., Watson, P., Bell, C. C., Bryant, R. A., Brymer, M. J., Friedman, M. J., Friedman, M., Gersons, B. P. R., de Jong, J. T. V. M., Layne, C. M., Maguen, S., Neria, Y., Norwood, A. E., Pynoos, R. S., Reissman, D., Ruzek, J. I., Shalev, A. Y., Solomon, Z., Steinberg, A. M., y Ursano, R. J. (2007). Five essential elements of immediate and mid-term mass trauma intervention: Empirical evidence. <em>Psychiatry: Interpersonal and Biological Processes, 70</em>(4), 283–315. https://doi.org/10.1521/psyc.2007.70.4.283</p>
-      <p class="ref-item reveal">Brymer, M., Jacobs, A., Layne, C., Pynoos, R., Ruzek, J., Steinberg, A., Vernberg, E., y Watson, P. (2006). <em>Psychological first aid: Field operations guide</em> (2.ª ed.). National Child Traumatic Stress Network y National Center for PTSD.</p>
-      <p class="ref-item reveal">Sphere Association. (2018). <em>The Sphere handbook: Humanitarian charter and minimum standards in humanitarian response</em> (4.ª ed.). Sphere Association.</p>
-      <p class="ref-item reveal">Echeburúa, E. (2004). <em>Superar un trauma: El tratamiento de las víctimas de sucesos violentos</em>. Pirámide.</p>
-      <p class="ref-item reveal">[Referencia 6 — Añadir según contenido facilitado]</p>
-      <p class="ref-item reveal">[Referencia 7 — Añadir según contenido facilitado]</p>
+      <p class="ref-item reveal">Bisson, J. I., &amp; Lewis, C. (2009). <em>Systematic review of psychological first aid</em>. World Health Organization. https://mhpsshub.org/wp-content/uploads/2024/04/bisson-Systematic_Review_of_Psychological_First_Aid.pdf</p>
+
+      <p class="ref-item reveal">Comité Permanente entre Organismos (IASC). (2007). <em>Guía del IASC sobre Salud Mental y Apoyo Psicosocial en Emergencias Humanitarias y Catástrofes</em>. IASC. https://interagencystandingcommittee.org/sites/default/files/migrated/2019-03/iasc_guidelines_mhpss_spanish.pdf</p>
+
+      <p class="ref-item reveal">Cortés Montenegro, P., &amp; Figueroa Cabello, R. (2017). <em>Manual ABCDE para la aplicación de primeros auxilios psicológicos en crisis individuales y colectivas</em> (1.ª ed.). Pontificia Universidad Católica de Chile, Escuela de Medicina, Departamento de Psiquiatría; Centro Nacional de Investigación para la Gestión Integrada de Desastres Naturales (CIGIDEN). https://d1wqtxts1xzle7.cloudfront.net/64710656/_2017_Paula_Cortes_y_Rodrigo_Figueroa-libre.pdf</p>
+
+      <p class="ref-item reveal">Cruz Roja Argentina. (s. f.). Primeros Auxilios Psicológicos: ¿Qué son y cómo brindarlos? <em>Blog de la Cruz Roja Argentina</em>. https://cruzroja.org.ar/blog/primeros-auxilios-psicologicos-que-son-y-como-brindarlos/</p>
+
+      <p class="ref-item reveal">Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja. (2018). <em>Manual de Primeros Auxilios Psicológicos</em>. Centro de Referencia para el Apoyo Psicosocial de la FICR. https://pscentre.org/project/psychological-first-aid-pfa-manual/</p>
+
+      <p class="ref-item reveal">Figley, C. R. (2002). Compassion fatigue: Psychotherapists' chronic lack of self care. <em>Journal of Clinical Psychology, 58</em>(11), 1433–1441. https://doi.org/10.1002/jclp.10090</p>
+
+      <p class="ref-item reveal">Hobfoll, S. E., Watson, P., Bell, C. C., Bryant, R. A., Brymer, M. J., Friedman, M. J., Friedman, M., Gersons, B. P. R., de Jong, J. T. V. M., Layne, C. M., Maguen, S., Neria, Y., Norwood, A. E., Pynoos, R. S., Reissman, D., Ruzek, J. I., Shalev, A. Y., Solomon, Z., Steinberg, A. M., &amp; Ursano, R. J. (2007). Five essential elements of immediate and mid-term mass trauma intervention: Empirical evidence. <em>Psychiatry, 70</em>(4), 283–315. https://doi.org/10.1521/psyc.2007.70.4.283</p>
+
+      <p class="ref-item reveal">Organización Mundial de la Salud. (2012). <em>Primera ayuda psicológica: Guía para trabajadores de campo</em>. OMS. https://www.who.int/es/publications/i/item/9789241548205</p>
+
+      <p class="ref-item reveal">Organización Mundial de la Salud, War Trauma Foundation y Visión Mundial Internacional. (2012). <em>Primera ayuda psicológica: Guía para trabajadores de campo</em>. https://iris.who.int/handle/10665/44615</p>
+
+      <p class="ref-item reveal">Organización Panamericana de la Salud &amp; Organización Mundial de la Salud. (2010). <em>Primera ayuda psicológica: Guía para trabajadores de campo</em>. https://www.paho.org/es/node/44399</p>
     </div>
   </div>
 </section>
@@ -1225,9 +1284,9 @@
 <!-- FOOTER -->
 <footer>
   <p>
-    <span>Primeros Auxilios Psicológicos</span> · Trabajo académico<br>
-    <span>[Nombre del autor/autores]</span> · [Universidad] · [Año]<br><br>
-    Diseño provisional — El contenido definitivo se incorporará próximamente
+    <span>Primeros Auxilios Psicológicos</span> · Interacción Psicosocial<br>
+    <span>Airán Yanes · Diego Medina · Ángela Rodríguez · Ayoze García · Jon Megún Salvador</span><br>
+    Universidad de La Laguna (ULL)
   </p>
 </footer>
 
@@ -1246,7 +1305,7 @@
     const wrap = document.getElementById('orbitWrap');
     const W = wrap.offsetWidth, H = wrap.offsetHeight;
     orbitCX = W / 2; orbitCY = H / 2;
-    orbitR  = Math.min(orbitCX, orbitCY) * 0.72;
+    orbitR  = Math.min(orbitCX, orbitCY) * 0.74;
   }
 
   function drawLines() {
